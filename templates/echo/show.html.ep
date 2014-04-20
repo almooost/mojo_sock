@@ -1,0 +1,9 @@
+<%= link_to "Show Chat" => 'echo_start' %>
+<BR><BR>
+Show Chat Data<BR>
+% foreach my $key (keys $data_in){
+	% foreach my $subkey (keys $data_in->{$key}){
+	<%= "User ".$key.": ".scalar(localtime(substr($subkey, 0, 10))).": ".$data_in->{$key}->{$subkey}; %>
+	<BR>
+	%}
+%}

@@ -1,0 +1,7 @@
+Create a new city
+<%= form_for 'cities_create' => (method => 'post') => begin %>
+		Name: <%= text_field 'name'%>
+		Info: <%= text_field 'info'%>
+		<%= submit_button 'Submit'%>
+
+<%end%>

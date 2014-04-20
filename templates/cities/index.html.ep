@@ -1,0 +1,5 @@
+List of all city IDs (names)<BR>
+% foreach my $key (keys %$cities){
+	%= link_to $key => "cities_show", {id => $key}
+	<BR>
+	% }

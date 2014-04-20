@@ -1,0 +1,6 @@
+Update city: 
+<%= form_for 'cities_update', {id => $id}, method => 'post' => begin %>
+	Name: <%= text_field 'name', value => $id %>
+	Info: <%= text_field 'info', value => $info %>
+	<%= submit_button 'Submit' %>
+<% end %>

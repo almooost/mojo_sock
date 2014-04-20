@@ -1,0 +1,9 @@
+<!--Create form for Login -->
+Login Form
+%= form_for login => (method => 'POST') =>  begin
+	%= text_field 'username'
+	%= password_field 'password'
+	%= submit_button
+% end
+
+<%= $info %>

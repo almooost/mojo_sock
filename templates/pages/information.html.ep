@@ -1,0 +1,3 @@
+<!-- Information HTML -->
+<%= $info %>
+<a href="/"> Back to Login</a>
