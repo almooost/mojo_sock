@@ -1,3 +1,36 @@
-<!-- Information HTML -->
-<%= $info %>
-<a href="/"> Back to Login</a>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Echo</title>
+ %= stylesheet 'css/style.css'
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		header
+	</div>
+	<div id="menu">
+		<ul>
+			<a href="chat"><li><img class="svg_menu" src="img/home.svg">Home</li></a>
+			<a href="login"><li><img class="svg_menu" src="img/user.svg">Login</li></a>
+			<a href="logout"><li><img class="svg_menu" src="img/logout.svg">Logout</li></a>
+		</ul>
+	</div>
+	<div id="main">
+		<div id="content">
+				<div style="margin:10px 0 0 10px;">
+					<!-- Information HTML -->
+					<%= $info %>
+					<a href="/"> Back to Login</a>
+				</div>
+			</div>
+		</div>
+		<div id="userlist">
+		
+		</div>
+		<div id="footer">
+			footer
+		</div>
+	</div>
+</body>
+</html>

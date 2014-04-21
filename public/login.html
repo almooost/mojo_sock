@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chat</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="js/websocket.js"></script>
+<script type="text/javascript">
+
+</script>
+</head>
+<body onload="Javascript:setFocus('login_user');">
+	<div id="wrapper">
+		<div id="header">
+			header
+		</div>
+		<div id="menu">
+			<ul>
+				<a href="chat.html"><li><img class="svg_menu" src="img/home.svg">Home</li></a>
+				<a href="login.html"><li><img class="svg_menu" src="img/user.svg">Login</li></a>
+				<a href="#logout"><li><img class="svg_menu" src="img/logout.svg">Logout</li></a>
+			</ul>
+		</div>
+		<div id="main">
+			<div id=="content">
+				<div id="main_login">
+					<label>User: <input id="login_user" class="login" type="text" name="login_user"></label>
+					<label>Pwd: <input id="login_pwd" class="login" type="password" name="login_pwd">
+					<button id="login_send" class="login_send" type="button" name="login_send" onclick="Javascript:login();">Login</button>
+				</div>
+			</div>
+		</div>
+		<div id="userlist">
+			userlist
+		</div>
+		<div id="footer">
+			footer
+		</div>
+	</div>
+</body>
+</html>

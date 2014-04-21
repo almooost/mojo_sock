@@ -1,9 +1,45 @@
-<!--Create form for Login -->
-Login Form
-%= form_for login => (method => 'POST') =>  begin
-	%= text_field 'username'
-	%= password_field 'password'
-	%= submit_button
-% end
 
-<%= $info %>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Echo</title>
+ %= stylesheet 'css/style.css'
+ %= javascript 'js/websocket.js'
+</head>
+<body onload="Javascript:setFocus('username');">
+<div id="wrapper">
+	<div id="header">
+		header
+	</div>
+	<div id="menu">
+		<ul>
+			<a href="chat"><li><img class="svg_menu" src="img/home.svg">Home</li></a>
+			<a href="login"><li><img class="svg_menu" src="img/user.svg">Login</li></a>
+			<a href="logout"><li><img class="svg_menu" src="img/logout.svg">Logout</li></a>
+		</ul>
+	</div>
+	<div id="main">
+		<div id="content">
+				<div id="main_login">
+					%= form_for login => (method => 'POST') =>  begin
+					%= label_for username => 'Username' 
+					%= text_field 'username', id => 'username', class=> 'login'
+					%= label_for username => 'Pwd' 
+					%= password_field 'password', class=> 'login'
+				%= submit_button 'Send', class => 'login_send'
+				% end
+				</div>
+				<div style="margin:10px 0 0 10px;">
+					<%= $info %>
+				</div>
+			</div>
+		</div>
+		<div id="userlist">
+		
+		</div>
+		<div id="footer">
+			footer
+		</div>
+	</div>
+</body>
+</html>

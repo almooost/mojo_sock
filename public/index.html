@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Welcome to the Mojolicious real-time web framework!</title>
-  </head>
-  <body>
-    <h2>Welcome to the Mojolicious real-time web framework!</h2>
-    This is the static document "public/index.html",
-    <a href="/">click here</a> to get back to the start.
-  </body>
-</html>
+	<head><title>Echo</title></head>
+	<body>
+	<script>
+		var wss = new WebSocket('<%= url_for('echo')->to_abs %>');
+
+		// Incoming messages
+		wss.onmessage = function(event){
+			document.body.innerHTML += event.data + '<BR>';
+		};
+
+		// Outgoing messages
+		window.setInterval(function() {
+			wss.send('Hello Mojo!');
+		}, 1000);
+	</script>
+	</body>
+</html>	

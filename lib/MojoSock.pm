@@ -24,6 +24,7 @@ my %users = (
   }
 );
 
+# Whole Chat Data 
 my %data_in;
 
 # This method will run once at server start
@@ -95,11 +96,11 @@ sub startup {
   my $auth_bridge = $r->bridge('/')->to(controller => 'auth', action => 'check');
   # Protected Sites
   $auth_bridge->route('/')->to('auth#welcome');
-  $auth_bridge->route('/echo')->to('echo#start')->name('echo_start');
+  $auth_bridge->route('/chat')->to('echo#chat')->name('echo_chat');
   $auth_bridge->route('/show')->to('echo#show')->name('echo_show');
 
-  $auth_bridge->websocket('/echo')->name("echo_root")
-  ->via('get')->to('echo#start');
+  $auth_bridge->websocket('/chat')->name("echo_root")
+  ->via('get')->to('echo#chat');
 
   # Generic Placeholder if nothing matches
   # Check if user is logged in
@@ -113,21 +114,25 @@ sub startup {
 
 
 }
+# Return Hash Reference to Users
 sub userdata {
-  return %users;
+  return \%users;
 }
 
+# Write Data in data Hash
 sub write_data {
 
   my($user, $msg) = @_;
 
-  $data_in{$user}->{time()."|".int(rand(10000))} = $msg;
+  $data_in{$user}->{++$#data_in} = (time()."|".$msg);
 
   return 1;
 }
 
+#return Hash Reference to chat data
 sub data_in {
   return \%data_in;
 }
+
 
 1;

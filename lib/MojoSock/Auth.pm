@@ -43,7 +43,7 @@ sub login {
 
 			#Set username and uid in stash and redirect to Echo Start Page
 			$self->stash(username=>$username, info => 'Authentication successful');
-			$self->redirect_to('echo_start');
+			$self->redirect_to('echo_chat');
 			return 1;
 		} else {
 			# Send User back to login Page

@@ -1,9 +1,43 @@
-<%= link_to "Show Chat" => 'echo_start' %>
-<BR><BR>
-Show Chat Data<BR>
-% foreach my $key (keys $data_in){
-	% foreach my $subkey (keys $data_in->{$key}){
-	<%= "User ".$key.": ".scalar(localtime(substr($subkey, 0, 10))).": ".$data_in->{$key}->{$subkey}; %>
-	<BR>
-	%}
-%}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Echo</title>
+ %= stylesheet 'css/style.css'
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		header
+	</div>
+	<div id="menu">
+		<ul>
+			<a href="chat"><li><img class="svg_menu" src="img/home.svg">Home</li></a>
+			<a href="login"><li><img class="svg_menu" src="img/user.svg">Login</li></a>
+			<a href="logout"><li><img class="svg_menu" src="img/logout.svg">Logout</li></a>
+		</ul>
+	</div>
+	<div id="main">
+		<div id="content">
+				<div style="margin:10px 0 0 10px;">
+					
+					<%= link_to "Show Chat" => 'echo_chat' %>
+					<BR><BR>
+					Show Chat Data<BR>
+					% foreach my $key (keys $data_in){
+						% foreach my $subkey (keys $data_in->{$key}){
+						<%= "User ".$key.": ".scalar(localtime(substr($data_in->{$key}->{$subkey}, 0, 10))).": ".substr($data_in->{$key}->{$subkey}, 11); %>
+						<BR>
+						%}
+					%}
+				</div>
+			</div>
+		</div>
+		<div id="userlist">
+		
+		</div>
+		<div id="footer">
+			footer
+		</div>
+	</div>
+</body>
+</html>

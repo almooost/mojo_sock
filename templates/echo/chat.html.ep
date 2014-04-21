@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>Echo</title>
+	 %= stylesheet 'css/style.css'
+	 %= javascript 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'
+	 %= javascript 'js/websocket.js'
+	</head>
+	<body>
+	<script>
+	var wss = new WebSocket('wss://127.0.0.1:443/chat');
+
+		// Incoming messages
+		wss.onmessage = function(msg){
+			//Create new message
+			var message = new Message();
+			// Parse JSON
+			var res = JSON.parse(msg.data);
+			var chat_user = res.user;
+			message.setMessage(res.text);
+
+			// Create Userlist
+			document.getElementById('userlist').innerHTML = createUserList(res.user_online);
+
+			if(res.text != ''){
+				var chat_msg = new Chat();
+				chat_msg.addChatMsg(chat_user, res.text);
+				document.getElementById('chat_output').value += res.text+"\n<BR>";
+			}
+
+		};
+
+		// Outgoing messages
+		wss.newmessage = function() {
+			var name = document.getElementById('user').value;
+			var msg = document.getElementById('chat_input').value;
+			// Check if input is not empty
+			if (msg != ''){
+				wss.send(JSON.stringify({
+					id: name,
+					data: msg
+				}));
+			}
+		};
+
+	$(document).ready(function(){
+		
+	});	
+		
+
+	</script>
+<body onload="Javascript:setFocus('chat_input');">
+	<div id="wrapper">
+		<div id="header">
+			header
+		</div>
+		<div id="menu">
+			<ul>
+				<a href="chat"><li><img class="svg_menu" src="img/home.svg">Home</li></a>
+				<a href="login"><li><img class="svg_menu" src="img/user.svg">Login</li></a>
+				<a href="logout"><li><img class="svg_menu" src="img/logout.svg">Logout</li></a>
+			</ul>
+		</div>
+		<div id="main">
+			<div id="content">
+				<div id="main_chat">
+					<label>User: <input id="chat_user" type="text" name="chat_user" disabled></label>
+					<div id="chat_output" class="chat_output" type="textarea" name="chat_ouput"></div>
+					<%= hidden_field user => $user, id => 'user' %>
+					<%= text_field 'chat_input', id => 'chat_input', class => 'chat_input', onfocus=>"Javascript:setListener();", placeholder => $msg %>
+					<%= input_tag 'chat_send', id => 'chat_send', class => 'chat_send', type => 'button', onClick => 'Javascript:wss.newmessage();', value => 'Send' %>
+				</div>
+				<div>
+					<%= input_tag 'connect', id => 'connect', class => 'chat_send', type => 'button', onClick => "Javascript:connectUser('$user', 'chat_user');", value => 'Connect' %>
+				</div>
+				content
+			</div>
+		</div>
+		<div id="userlist">
+		
+		</div>
+		<div id="footer">
+			footer
+		</div>
+	</div>
+</body>
+<script type="javascript">
+	connectUser('<%= $user %>', 'chat_user');
+</script>
+</html>

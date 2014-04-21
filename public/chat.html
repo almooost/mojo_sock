@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chat</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="js/websocket.js"></script>
+<script type="text/javascript">
+
+
+function sendMessage(){
+	var message = new Message();
+	msg = document.getElementsByName("chat_input")[0];
+	output = document.getElementById("chat_output");
+	chat_user = document.getElementById("chat_user");
+	message.setMessage(msg.value);
+
+	if(msg.value != ''){
+		var chat_msg = new Chat();
+		chat_msg.addChatMsg(chat_user.value, msg.value);
+		output.value += msg.value+"\n<BR>";
+	}
+};
+</script>
+</head>
+<body onload="Javascript:setFocus('chat_input');">
+	<div id="wrapper">
+		<div id="header">
+			header
+		</div>
+		<div id="menu">
+			<ul>
+				<a href="chat.html"><li><img class="svg_menu" src="img/home.svg">Home</li></a>
+				<a href="login.html"><li><img class="svg_menu" src="img/user.svg">Login</li></a>
+				<a href="#logout"><li><img class="svg_menu" src="img/logout.svg">Logout</li></a>
+			</ul>
+		</div>
+		<div id="main">
+			<div id=="content">
+				<div id="main_chat">
+					<label>User: <input id="chat_user" type="text" name="chat_user"></label>
+					<div id="chat_output" class="chat_output" type="textarea" name="chat_ouput"></div>
+					<input id="chat_input" class="chat_input" type="text" name="chat_input" onfocus="Javascript:setListener();">
+					<button id="chat_send" class="chat_send" type="button" name="chat_send" onclick="Javascript:sendMessage();">Send</button>
+				</div>
+				content
+			</div>
+		</div>
+		<div id="userlist">
+			userlist
+		</div>
+		<div id="footer">
+			footer
+		</div>
+	</div>
+</body>
+</html>
